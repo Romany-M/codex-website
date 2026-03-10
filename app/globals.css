@@ -24,3 +24,72 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html {
+scroll-behavior: smooth;
+}
+
+.gradient-bg {
+background: linear-gradient(270deg,#0f172a,#1e3a8a,#2563eb,#0f172a);
+background-size: 600% 600%;
+animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+
+0% {
+background-position:0% 50%;
+}
+
+50% {
+background-position:100% 50%;
+}
+
+100% {
+background-position:0% 50%;
+}
+
+}
+
+.custom-cursor{
+width:20px;
+height:20px;
+border:2px solid #2563eb;
+border-radius:50%;
+position:fixed;
+transform:translate(-50%,-50%);
+pointer-events:none;
+z-index:9999;
+transition:transform .1s ease;
+}
+
+.animate-scroll{
+animation:scroll 20s linear infinite;
+}
+
+@keyframes scroll{
+
+0%{
+transform:translateX(0)
+}
+
+100%{
+transform:translateX(-50%)
+}
+
+}
+
+.glow-btn{
+background:#2563eb;
+color:white;
+padding:16px 32px;
+border-radius:12px;
+position:relative;
+transition:.3s;
+}
+
+.glow-btn:hover{
+box-shadow:0 0 20px #2563eb,
+0 0 40px #2563eb;
+transform:translateY(-2px);
+}
