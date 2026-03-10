@@ -1,4 +1,17 @@
-export default function ProjectCaseStudy({title,image,problem,solution,tech,results}){
+"use client"
+
+import useTranslation from "@/lib/useTranslation"
+
+export default function ProjectCaseStudy({
+title,
+image,
+problem,
+solution,
+tech,
+results
+}){
+
+const { t } = useTranslation()
 
 return(
 
@@ -14,7 +27,7 @@ className="rounded-xl mb-12"
 />
 
 <h2 className="text-2xl font-bold mb-4">
-The Problem
+{t.case_problem}
 </h2>
 
 <p className="text-gray-600 mb-10">
@@ -22,7 +35,7 @@ The Problem
 </p>
 
 <h2 className="text-2xl font-bold mb-4">
-The Solution
+{t.case_solution}
 </h2>
 
 <p className="text-gray-600 mb-10">
@@ -30,7 +43,7 @@ The Solution
 </p>
 
 <h2 className="text-2xl font-bold mb-6">
-Technologies Used
+{t.case_tech}
 </h2>
 
 <div className="flex flex-wrap gap-4 mb-12">
@@ -47,7 +60,7 @@ className="bg-gray-100 px-4 py-2 rounded-lg"
 </div>
 
 <h2 className="text-2xl font-bold mb-6">
-Results
+{t.case_results}
 </h2>
 
 <ul className="space-y-2 text-gray-700">

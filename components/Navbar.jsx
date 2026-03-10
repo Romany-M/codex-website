@@ -1,14 +1,16 @@
 "use client"
 
 import { useState } from "react"
+import LanguageSwitcher from "./LanguageSwitcher"
+import useTranslation from "@/lib/useTranslation"
 
-export default function Navbar() {
+export default function Navbar(){
 
 const [open,setOpen] = useState(false)
 
+const { t, lang } = useTranslation()
 
 return(
-    
 
 <nav className="fixed top-0 left-0 w-full bg-white border-b z-50">
 
@@ -18,19 +20,34 @@ return(
 Codex
 </h1>
 
-<div className="hidden md:flex gap-8">
+<div className="hidden md:flex gap-8 items-center">
 
-<a href="#">Home</a>
-<a href="#services">Services</a>
-<a href="#portfolio">Portfolio</a>
-<a href="#contact">Contact</a>
+<a href={`${lang === "ar" ? "/ar" : ""}`}>
+{t.nav_home}
+</a>
+
+<a href={`${lang === "ar" ? "/ar" : ""}#services`}>
+{t.nav_services}
+</a>
+
+<a href={`${lang === "ar" ? "/ar" : ""}#portfolio`}>
+{t.nav_portfolio}
+</a>
+
+<a href={`${lang === "ar" ? "/ar" : ""}#contact`}>
+{t.nav_contact}
+</a>
+
+<LanguageSwitcher/>
 
 </div>
 
-<a href="#contact" className="hidden md:block">
+<a href={`${lang === "ar" ? "/ar" : ""}#contact`} className="hidden md:block">
+
 <button className="bg-blue-600 text-white px-6 py-3 rounded-xl">
-Start Project
+{t.start_project}
 </button>
+
 </a>
 
 <button
@@ -46,10 +63,25 @@ onClick={()=>setOpen(!open)}
 
 <div className="md:hidden bg-white border-t p-6 space-y-4 text-center">
 
-<a href="#">Home</a>
-<a href="#services">Services</a>
-<a href="#portfolio">Portfolio</a>
-<a href="#contact">Contact</a>
+<a href={`${lang === "ar" ? "/ar" : ""}`}>
+{t.nav_home}
+</a>
+
+<a href={`${lang === "ar" ? "/ar" : ""}#services`}>
+{t.nav_services}
+</a>
+
+<a href={`${lang === "ar" ? "/ar" : ""}#portfolio`}>
+{t.nav_portfolio}
+</a>
+
+<a href={`${lang === "ar" ? "/ar" : ""}#contact`}>
+{t.nav_contact}
+</a>
+
+<div className="flex justify-center">
+<LanguageSwitcher/>
+</div>
 
 </div>
 
@@ -58,4 +90,5 @@ onClick={()=>setOpen(!open)}
 </nav>
 
 )
+
 }

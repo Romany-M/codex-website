@@ -1,14 +1,18 @@
 "use client"
 
+import useTranslation from "@/lib/useTranslation"
+
 export default function Process(){
+
+const { t } = useTranslation()
 
 const steps=[
 
-"Discovery",
-"Planning",
-"Design",
-"Development",
-"Launch"
+t.process_step1,
+t.process_step2,
+t.process_step3,
+t.process_step4,
+t.process_step5
 
 ]
 
@@ -17,7 +21,7 @@ return(
 <section className="py-24">
 
 <h2 className="text-4xl font-bold text-center mb-16">
-Our Process
+{t.process_title}
 </h2>
 
 <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-8 text-center">
@@ -42,4 +46,5 @@ className="p-6 border rounded-xl"
 </section>
 
 )
+
 }

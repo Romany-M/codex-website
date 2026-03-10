@@ -1,24 +1,29 @@
 "use client"
 
 import { motion } from "framer-motion"
+import useTranslation from "@/lib/useTranslation"
 
-export default function Services() {
+export default function Services(){
+
+const { t } = useTranslation()
 
 const services = [
+
 {
-title: "Web Development",
-desc: "Modern and fast websites built with the latest technologies."
+title: t.service_web_title,
+desc: t.service_web_desc
 },
 
 {
-title: "Mobile App Development",
-desc: "iOS and Android apps with high performance."
+title: t.service_mobile_title,
+desc: t.service_mobile_desc
 },
 
 {
-title: "UI/UX Design",
-desc: "Beautiful and user friendly product designs."
+title: t.service_ui_title,
+desc: t.service_ui_desc
 }
+
 ]
 
 return(
@@ -26,12 +31,13 @@ return(
 <section id="services" className="py-24 bg-gray-50">
 
 <h2 className="text-4xl font-bold text-center mb-16">
-Our Services
+{t.services_title}
 </h2>
 
-<div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
+<div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 px-6">
 
 {services.map((service,i)=>(
+
 <motion.div
 key={i}
 initial={{opacity:0,y:60}}
@@ -50,6 +56,7 @@ className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition"
 </p>
 
 </motion.div>
+
 ))}
 
 </div>
@@ -57,4 +64,5 @@ className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition"
 </section>
 
 )
+
 }

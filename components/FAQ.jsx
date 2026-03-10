@@ -1,30 +1,18 @@
 "use client"
 
 import { useState } from "react"
+import useTranslation from "@/lib/useTranslation"
 
 export default function FAQ(){
 
+const { t } = useTranslation()
+
 const faqs=[
 
-{
-q:"How long does it take to build a website?",
-a:"Most projects take between 2-6 weeks depending on complexity."
-},
-
-{
-q:"Do you build custom software?",
-a:"Yes, we specialize in custom web and mobile applications."
-},
-
-{
-q:"Do you provide ongoing support?",
-a:"Yes, we offer maintenance and long-term support packages."
-},
-
-{
-q:"Can you redesign existing websites?",
-a:"Absolutely. We often improve design, speed and SEO."
-}
+{ q:t.faq1_q , a:t.faq1_a },
+{ q:t.faq2_q , a:t.faq2_a },
+{ q:t.faq3_q , a:t.faq3_a },
+{ q:t.faq4_q , a:t.faq4_a }
 
 ]
 
@@ -35,7 +23,7 @@ return(
 <section id="faq" className="py-24 bg-gray-50">
 
 <h2 className="text-4xl font-bold text-center mb-16">
-Frequently Asked Questions
+{t.faq_title}
 </h2>
 
 <div className="max-w-3xl mx-auto space-y-6">
@@ -74,4 +62,5 @@ className="flex justify-between w-full text-left font-semibold"
 </section>
 
 )
+
 }

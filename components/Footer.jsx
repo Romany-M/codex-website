@@ -1,4 +1,10 @@
+"use client"
+
+import useTranslation from "@/lib/useTranslation"
+
 export default function Footer(){
+
+const { t } = useTranslation()
 
 return(
 
@@ -13,7 +19,7 @@ Codex
 </h3>
 
 <p className="text-gray-400">
-Building modern software solutions for startups.
+{t.footer_desc}
 </p>
 
 </div>
@@ -21,14 +27,14 @@ Building modern software solutions for startups.
 <div>
 
 <h4 className="font-bold mb-4">
-Company
+{t.footer_company}
 </h4>
 
 <ul className="space-y-2 text-gray-400">
 
-<li><a href="#">Home</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#">{t.nav_home}</a></li>
+<li><a href="#services">{t.nav_services}</a></li>
+<li><a href="#portfolio">{t.nav_portfolio}</a></li>
 
 </ul>
 
@@ -37,14 +43,14 @@ Company
 <div>
 
 <h4 className="font-bold mb-4">
-Resources
+{t.footer_resources}
 </h4>
 
 <ul className="space-y-2 text-gray-400">
 
 <li><a href="#blog">Blog</a></li>
 <li><a href="#faq">FAQ</a></li>
-<li><a href="#contact">Support</a></li>
+<li><a href="#contact">{t.nav_contact}</a></li>
 
 </ul>
 
@@ -53,20 +59,19 @@ Resources
 <div>
 
 <h4 className="font-bold mb-4">
-Contact
+{t.footer_contact}
 </h4>
 
 <p className="text-gray-400 mb-4">
 hello@codex.dev
 </p>
 
-
 </div>
 
 </div>
 
 <p className="text-center text-gray-500 mt-16">
-© 2025 Codex. All rights reserved.
+© 2025 Codex. {t.footer_rights}
 </p>
 
 </footer>

@@ -1,14 +1,17 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import useTranslation from "@/lib/useTranslation"
 
 export default function Stats(){
 
+const { t } = useTranslation()
+
 const stats=[
-{number:150,label:"Projects Delivered"},
-{number:80,label:"Happy Clients"},
-{number:6,label:"Years Experience"},
-{number:24,label:"Team Members"}
+{number:150,label:t.stats_projects},
+{number:80,label:t.stats_clients},
+{number:6,label:t.stats_years},
+{number:24,label:t.stats_team}
 ]
 
 const [counts,setCounts]=useState(stats.map(()=>0))
@@ -42,7 +45,7 @@ return(
 <section className="py-24 bg-white">
 
 <h2 className="text-4xl font-bold text-center mb-16">
-Our Impact
+{t.stats_title}
 </h2>
 
 <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">

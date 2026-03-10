@@ -1,6 +1,10 @@
 "use client"
 
+import useTranslation from "@/lib/useTranslation"
+
 export default function Trusted(){
+
+const { t } = useTranslation()
 
 const logos = [
 "https://cdn.worldvectorlogo.com/logos/google-1.svg",
@@ -14,7 +18,7 @@ return(
 <section className="py-20 bg-white">
 
 <p className="text-center text-gray-500 mb-10 text-lg">
-Trusted by innovative companies worldwide
+{t.trusted_title}
 </p>
 
 <div className="max-w-6xl mx-auto flex flex-wrap justify-center items-center gap-12 opacity-70">

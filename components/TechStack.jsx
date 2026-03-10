@@ -1,6 +1,10 @@
 "use client"
 
+import useTranslation from "@/lib/useTranslation"
+
 export default function TechStack(){
+
+const { t } = useTranslation()
 
 const tech = [
 { name:"React", icon:"⚛️"},
@@ -18,7 +22,7 @@ return(
 <section className="py-24 bg-gray-50">
 
 <h2 className="text-4xl font-bold text-center mb-16">
-Our Technology Stack
+{t.tech_title}
 </h2>
 
 <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 px-6">

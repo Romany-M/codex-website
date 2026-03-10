@@ -14,27 +14,49 @@ import TechStack from "@/components/TechStack"
 import Divider from "@/components/Divider"
 import Trusted from "@/components/Trusted"
 import Blog from "@/components/Blog"
+
 export default function Home() {
-  return (
-    <div className="pt-24">
-      <Navbar />
-      <Hero />
-      <Trusted/>
-      <Services />
-      <Clients />
-      <TechStack />
-      <Stats/>
-      <Portfolio />
-      <Process />
-      <Testimonials />
-      <WhyUs />
-      <Blog />
-      <Divider/>
-      <FAQ />
-      <Contact />
-      <Footer />
-      <Divider/>
-      
-    </div>
-  )
+
+return (
+
+<div className="pt-24">
+
+<Navbar />
+
+<Hero />
+
+<Trusted/>
+
+<Services />
+
+<Clients />
+
+<TechStack />
+
+<Stats/>
+
+<Portfolio />
+
+<Process />
+
+<Testimonials />
+
+<WhyUs />
+
+<Blog />
+
+<Divider/>
+
+<FAQ />
+
+<Contact />
+
+<Footer />
+
+<Divider/>
+
+</div>
+
+)
+
 }

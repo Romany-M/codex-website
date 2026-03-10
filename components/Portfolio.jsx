@@ -3,30 +3,33 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import InteractiveCard from "./InteractiveCard"
+import useTranslation from "@/lib/useTranslation"
 
 export default function Portfolio(){
+
+const { t } = useTranslation()
 
 const [selected,setSelected] = useState(null)
 
 const projects=[
 
 {
-title:"E-Commerce Platform",
-desc:"Modern online store with payment integration",
+title:t.project1_title,
+desc:t.project1_desc,
 img:"https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80",
 link:"/projects/ecommerce"
 },
 
 {
-title:"Startup Landing Page",
-desc:"High converting SaaS landing page",
+title:t.project2_title,
+desc:t.project2_desc,
 img:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
 link:"/projects/startup"
 },
 
 {
-title:"Mobile App Dashboard",
-desc:"Admin dashboard for mobile app analytics",
+title:t.project3_title,
+desc:t.project3_desc,
 img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
 link:"/projects/dashboard"
 },
@@ -38,7 +41,7 @@ return(
 <section id="portfolio" className="py-24 bg-gray-50">
 
 <h2 className="text-4xl font-bold text-center mb-16">
-Our Portfolio
+{t.portfolio_title}
 </h2>
 
 <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
@@ -112,7 +115,7 @@ href={selected.link}
 className="bg-blue-600 text-white px-6 py-3 rounded-xl inline-block"
 >
 
-View Project
+{t.view_project}
 
 </a>
 
