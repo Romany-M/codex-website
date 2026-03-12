@@ -2,128 +2,173 @@
 
 import { motion } from "framer-motion"
 import { useState } from "react"
-import InteractiveCard from "./InteractiveCard"
+import Link from "next/link"
 import useTranslation from "@/lib/useTranslation"
+import { projects } from "@/lib/projects"
 
-export default function Portfolio(){
-
-const { t } = useTranslation()
-
-const [selected,setSelected] = useState(null)
-
-const projects=[
-
-{
-title:t.project1_title,
-desc:t.project1_desc,
-img:"https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80",
-link:"/projects/ecommerce"
-},
-
-{
-title:t.project2_title,
-desc:t.project2_desc,
-img:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-link:"/projects/startup"
-},
-
-{
-title:t.project3_title,
-desc:t.project3_desc,
-img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-link:"/projects/dashboard"
-},
-
+const categories = [
+  "All",
+  "Logistics",
+  "Fintech",
+  "Real Estate",
+  "Mobile",
+  "Aviation",
+  "Banking",
+  "Government"
 ]
 
-return(
+export default function Portfolio() {
+
+  const { t, lang } = useTranslation()
+
+  const [filter,setFilter] = useState("All")
+  const [visibleCount,setVisibleCount] = useState(9)
+
+  const filteredProjects =
+    filter === "All"
+      ? projects
+      : projects.filter(p => p.category === filter)
+
+  const displayed = filteredProjects.slice(0,visibleCount)
+
+  return(
 
 <section id="portfolio" className="py-24 bg-gray-50">
 
-<h2 className="text-4xl font-bold text-center mb-16">
+<div className="max-w-7xl mx-auto px-6">
+
+<h2 className="text-5xl font-bold text-center mb-4">
 {t.portfolio_title}
 </h2>
 
-<div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
-
-{projects.map((project,i)=>(
-
-<InteractiveCard key={i}>
-
-<motion.div
-onClick={()=>setSelected(project)}
-initial={{opacity:0,y:60}}
-whileInView={{opacity:1,y:0}}
-transition={{duration:0.6}}
-className="rounded-2xl overflow-hidden shadow-lg bg-white cursor-pointer"
->
-
-<img
-src={project.img}
-className="h-56 w-full object-cover"
-/>
-
-<div className="p-6">
-
-<h3 className="text-xl font-bold mb-2">
-{project.title}
-</h3>
-
-<p className="text-gray-600">
-{project.desc}
+<p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+{lang === "en"
+? "Real projects. Real impact. Built for the Gulf."
+: "مشاريع حقيقية. تأثير حقيقي. مصممة لدول الخليج."}
 </p>
 
-</div>
 
-</motion.div>
+<div className="flex flex-wrap gap-3 justify-center mb-12">
 
-</InteractiveCard>
+{categories.map(cat => (
+
+<button
+key={cat}
+onClick={()=>{
+
+setFilter(cat)
+setVisibleCount(9)
+
+}}
+className={`px-8 py-3 rounded-full font-medium transition-all ${
+filter === cat
+? "bg-blue-600 text-white shadow-lg"
+: "bg-white hover:bg-gray-100 text-gray-700"
+}`}
+>
+
+{cat}
+
+</button>
 
 ))}
 
 </div>
 
 
-{selected && (
+<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+{displayed.map((project,i)=>(
 
-<div className="bg-white rounded-2xl max-w-xl w-full p-8 relative">
-
-<button
-onClick={()=>setSelected(null)}
-className="absolute top-4 right-4 text-xl"
+<motion.div
+key={project.slug}
+initial={{opacity:0,y:60}}
+whileInView={{opacity:1,y:0}}
+transition={{delay:i*0.05}}
+className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
 >
-✕
-</button>
+
+
+<div className="relative h-80 overflow-hidden">
 
 <img
-src={selected.img}
-className="rounded-xl mb-6"
+src={project.image}
+alt={project.title[lang]}
+className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
 />
 
-<h3 className="text-2xl font-bold mb-2">
-{selected.title}
+<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+<div className="absolute top-6 right-6 bg-white/90 text-xs font-bold px-4 py-1.5 rounded-full">
+{project.country}
+</div>
+
+</div>
+
+
+<div className="p-8">
+
+<div className="text-blue-600 font-semibold text-sm mb-2">
+{project.client}
+</div>
+
+<h3 className="text-2xl font-bold mb-3">
+{project.title[lang]}
 </h3>
 
-<p className="text-gray-600 mb-6">
-{selected.desc}
+<p className="text-gray-600 line-clamp-3 mb-6">
+{project.description[lang]}
 </p>
 
-<a
-href={selected.link}
-className="bg-blue-600 text-white px-6 py-3 rounded-xl inline-block"
+<Link
+href={`/projects/view?slug=${project.slug}`}
+className="inline-flex items-center gap-3 text-blue-600 font-semibold group-hover:gap-5 transition-all"
 >
 
 {t.view_project}
 
-</a>
+<span className="text-xl">→</span>
+
+</Link>
 
 </div>
+
+</motion.div>
+
+))}
+
+</div>
+
+
+{visibleCount < filteredProjects.length && (
+
+<div className="flex justify-center gap-6 mt-16">
+
+<button
+onClick={()=>setVisibleCount(v=>v+6)}
+className="px-10 py-4 bg-white border border-gray-300 rounded-2xl font-semibold hover:bg-gray-50"
+>
+
+Load More
+
+</button>
+
+<Link
+href="/projects"
+className="px-10 py-4 bg-blue-600 text-white rounded-2xl font-semibold hover:bg-blue-700"
+>
+
+{lang === "en"
+? "View All Projects"
+: "شاهد كل المشاريع"}
+
+</Link>
 
 </div>
 
 )}
+
+</div>
 
 </section>
 
