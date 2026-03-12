@@ -30,11 +30,15 @@ return(
 
 <div
 key={i}
-className="p-6 border rounded-xl"
+className="p-6 border rounded-xl flex flex-col items-center gap-3"
 >
 
-<h3 className="font-bold text-lg">
-{i+1}. {step}
+<div className="text-3xl font-bold">
+{i+1}
+</div>
+
+<h3 className="font-medium text-lg">
+{step}
 </h3>
 
 </div>
